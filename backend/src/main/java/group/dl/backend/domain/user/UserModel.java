@@ -58,7 +58,7 @@ public class UserModel {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "store_id")
-  private StoreModel storeID;
+  private StoreModel storeId;
 
   @PrePersist
   public void prePersist() {
