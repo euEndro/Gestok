@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import group.dl.backend.domain.store.dto.CreateStoreDTO;
 import group.dl.backend.domain.store.dto.StoreResponseDTO;
+import group.dl.backend.domain.store.dto.UpdateStoreDTO;
 
 @Service
 public class StoreService {
@@ -44,20 +45,17 @@ public class StoreService {
     storeRepository.deleteById(id);
   }
 
-  public StoreResponseDTO updateName(UUID id, String updatedName) {
+  public StoreResponseDTO update(UUID id, UpdateStoreDTO newFields) {
     StoreModel store = storeRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Store not found"));
 
-    store.setName(updatedName);
-    StoreModel updatedStore = storeRepository.save(store);
-    return toResponse(store);
-  }
+    if (newFields.name() != null) {
+      store.setName(newFields.name());
+    }
+    if (newFields.plan() != null) {
+      store.setPlan(newFields.plan());
+    }
 
-  public StoreResponseDTO updatePlan(UUID id, Plan updatedPlan) {
-    StoreModel store = storeRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Store not found"));
-
-    store.setPlan(updatedPlan);
     StoreModel updatedStore = storeRepository.save(store);
     return toResponse(store);
   }

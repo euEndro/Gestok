@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import group.dl.backend.domain.store.dto.CreateStoreDTO;
 import group.dl.backend.domain.store.dto.StoreResponseDTO;
+import group.dl.backend.domain.store.dto.UpdateStoreDTO;
 
 @RestController
 @RequestMapping("/store")
@@ -45,20 +46,14 @@ public class StoreController {
     return ResponseEntity.ok(store);
   }
 
-  @PatchMapping("/{id}/name")
-  public ResponseEntity<StoreResponseDTO> updateName(@PathVariable UUID id, @RequestBody String updatedName) {
-    StoreResponseDTO store = storeService.updateName(id, updatedName);
-    return ResponseEntity.ok(store);
-  }
-
-  @PatchMapping("/{id}/plan")
-  public ResponseEntity<StoreResponseDTO> updatedPlan(@PathVariable UUID id, @RequestBody Plan updatedPlan) {
-    StoreResponseDTO store = storeService.updatePlan(id, updatedPlan);
+  @PatchMapping("/{id}/update")
+  public ResponseEntity<StoreResponseDTO> update(@PathVariable UUID id, @RequestBody UpdateStoreDTO updatedStore) {
+    StoreResponseDTO store = storeService.update(id, updatedStore);
     return ResponseEntity.ok(store);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Void> delete(@RequestBody UUID id) {
+  public ResponseEntity<Void> delete(@PathVariable UUID id) {
     storeService.delete(id);
     return ResponseEntity.noContent().build();
   }
