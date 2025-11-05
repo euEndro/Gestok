@@ -19,7 +19,7 @@ import group.dl.backend.domain.store.dto.StoreResponseDTO;
 import group.dl.backend.domain.store.dto.UpdateStoreDTO;
 
 @RestController
-@RequestMapping("/store")
+@RequestMapping("/api/store")
 public class StoreController {
 
   private final StoreService storeService;
