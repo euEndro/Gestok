@@ -65,7 +65,4 @@ public class UserModel {
     createdAt = LocalDateTime.now();
   }
 
-  protected String getPassword() {
-    return password;
-  }
 }
