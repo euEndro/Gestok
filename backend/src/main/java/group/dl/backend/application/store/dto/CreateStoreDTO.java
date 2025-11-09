@@ -1,8 +1,8 @@
-package group.dl.backend.domain.store.dto;
+package group.dl.backend.application.store.dto;
 
 import group.dl.backend.domain.store.Plan;
 
-public record UpdateStoreDTO(
+public record CreateStoreDTO(
     String name,
     Plan plan) {
 }

@@ -1,4 +1,4 @@
-package group.dl.backend.domain.store;
+package group.dl.backend.application.store.service;
 
 import java.util.List;
 import java.util.UUID;
@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import group.dl.backend.domain.store.dto.CreateStoreDTO;
-import group.dl.backend.domain.store.dto.StoreResponseDTO;
-import group.dl.backend.domain.store.dto.UpdateStoreDTO;
+import group.dl.backend.application.store.dto.CreateStoreDTO;
+import group.dl.backend.application.store.dto.StoreResponseDTO;
+import group.dl.backend.application.store.dto.UpdateStoreDTO;
+import group.dl.backend.domain.store.StoreModel;
+import group.dl.backend.domain.store.StoreRepository;
 
 @Service
 public class StoreService {

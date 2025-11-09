@@ -1,4 +1,4 @@
-package group.dl.backend.domain.user.dto;
+package group.dl.backend.application.user.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package group.dl.backend.domain.store.dto;
+package group.dl.backend.application.store.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package group.dl.backend.domain.store;
+package group.dl.backend.presentation.store;
 
 import java.util.List;
 import java.util.UUID;
@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import group.dl.backend.domain.store.dto.CreateStoreDTO;
-import group.dl.backend.domain.store.dto.StoreResponseDTO;
-import group.dl.backend.domain.store.dto.UpdateStoreDTO;
+import group.dl.backend.application.store.dto.CreateStoreDTO;
+import group.dl.backend.application.store.dto.StoreResponseDTO;
+import group.dl.backend.application.store.dto.UpdateStoreDTO;
+import group.dl.backend.application.store.service.StoreService;
 
 @RestController
 @RequestMapping("/api/store")
