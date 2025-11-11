@@ -1,5 +1,6 @@
 package group.dl.backend.application.user.mapper;
 
+import group.dl.backend.application.user.dto.CreateUserDTO;
 import group.dl.backend.application.user.dto.UserResponseDTO;
 import group.dl.backend.domain.user.UserModel;
 
@@ -11,13 +12,14 @@ public class UserMapper {
         user.getName(),
         user.getRole(),
         user.getCreatedAt(),
-        user.getStoreId());
+        user.getStore().getId());
   }
 
-  public static UserModel toModel(UserResponseDTO userDTO) {
-    return new UserModel(
-        userDTO.getName(),
-        userDTO.getEmail(),
-        userDTO.getPassword());
+  public static UserModel toModel(CreateUserDTO createDTO) {
+    UserModel user = new UserModel();
+    user.setName(createDTO.name());
+    user.setEmail(createDTO.email());
+    user.setPassword(createDTO.password());
+    return user;
   }
 }

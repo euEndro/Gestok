@@ -21,6 +21,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
@@ -29,36 +31,27 @@ public class UserModel {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
-  @Getter
   private UUID id;
 
-  @Getter
-  @Setter
   @Column(nullable = false, unique = true)
   private String email;
 
-  @Setter
   @Column(nullable = false)
   private String password;
 
-  @Getter
-  @Setter
   @Column(nullable = false, length = 100)
   private String name;
 
-  @Getter
-  @Setter
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private Role role;
 
-  @Getter
   @Column(nullable = false, updatable = false)
   private LocalDateTime createdAt;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "store_id")
-  private StoreModel storeId;
+  private StoreModel store;
 
   @PrePersist
   public void prePersist() {
