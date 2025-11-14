@@ -20,7 +20,7 @@ import group.dl.backend.application.store.dto.UpdateStoreDTO;
 import group.dl.backend.application.store.service.StoreService;
 
 @RestController
-@RequestMapping("/api/store")
+@RequestMapping("/api/stores")
 public class StoreController {
 
   private final StoreService storeService;
