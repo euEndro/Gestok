@@ -18,28 +18,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "stores")
 @AllArgsConstructor
 @NoArgsConstructor
 public class StoreModel {
 
   @Id
-  @Getter
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID id;
 
-  @Getter
-  @Setter
   @Column(nullable = false, length = 150)
   private String name;
 
-  @Getter
-  @Setter
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private Plan plan;
 
-  @Getter
   @Column(nullable = false, updatable = false)
   private LocalDateTime createdAt;
 

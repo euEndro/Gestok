@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import group.dl.backend.application.store.dto.CreateStoreDTO;
 import group.dl.backend.application.store.dto.StoreResponseDTO;
 import group.dl.backend.application.store.dto.UpdateStoreDTO;
+import group.dl.backend.application.store.mapper.StoreMapper;
 import group.dl.backend.domain.store.StoreModel;
 import group.dl.backend.domain.store.StoreRepository;
 
@@ -16,31 +17,29 @@ import group.dl.backend.domain.store.StoreRepository;
 public class StoreService {
 
   private final StoreRepository storeRepository;
+  private final StoreMapper storeMapper;
 
-  public StoreService(StoreRepository storeRepository) {
+  public StoreService(StoreRepository storeRepository, StoreMapper storeMapper) {
     this.storeRepository = storeRepository;
+    this.storeMapper = storeMapper;
   }
 
-  public StoreResponseDTO create(CreateStoreDTO dto) {
-    StoreModel store = new StoreModel();
-    store.setName(dto.name());
-    store.setPlan(dto.plan());
-
-    StoreModel saved = storeRepository.save(store);
-    return toResponse(saved);
+  public StoreResponseDTO create(CreateStoreDTO createDto) {
+    StoreModel store = storeRepository.save(storeMapper.toModel(createDto));
+    return storeMapper.toResponse(store);
   }
 
   public List<StoreResponseDTO> findAll() {
     return storeRepository.findAll().stream()
-        .map(this::toResponse)
-        .collect(Collectors.toList());
+        .map(storeMapper::toResponse)
+        .toList();
   }
 
   public StoreResponseDTO findById(UUID id) {
     StoreModel store = storeRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Store not found"));
 
-    return toResponse(store);
+    return storeMapper.toResponse(store);
   }
 
   public void delete(UUID id) {
@@ -59,14 +58,7 @@ public class StoreService {
     }
 
     StoreModel updatedStore = storeRepository.save(store);
-    return toResponse(store);
+    return storeMapper.toResponse(updatedStore);
   }
 
-  private StoreResponseDTO toResponse(StoreModel store) {
-    return new StoreResponseDTO(
-        store.getId(),
-        store.getName(),
-        store.getPlan(),
-        store.getCreatedAt());
-  }
 }
